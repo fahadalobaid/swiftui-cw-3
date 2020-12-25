@@ -7,6 +7,9 @@
 import SwiftUI
 
 struct Exercise2: View {
+    
+    @State var kw = ""
+    
     var body: some View {
         
         ZStack {
@@ -17,19 +20,20 @@ struct Exercise2: View {
                     .scaledToFit()
                     .ignoresSafeArea()
                     .offset(y: 60.0)
+                
             }
             ZStack {
                 VStack {
-                    Text("محول العملات العجيب!")
+                  Text("محول العملات العجيب!")
                         .font(.largeTitle)
                         .bold()
                         .multilineTextAlignment(.center)
                         .padding()
+                
                     
-                    Text("استبدل هذا ب Text Field")
-                        .font(.largeTitle)
-                        .multilineTextAlignment(.center)
-                        .keyboardType(.decimalPad)
+                    
+                    TextField ("اكتب العملة بالدينار الكويتي", text: $kw)
+            
 
                     VStack(spacing: 30){
                         HStack(spacing: 40){
@@ -38,7 +42,10 @@ struct Exercise2: View {
                                 .scaledToFit()
                                 .frame(width: 50)
                             
-                            Text("0")
+                            
+                            Text("$\((Double(kw) ?? 0) * 3.28)")
+                            
+                            
                         }
                         HStack(spacing: 40){
                             Image("uk")
@@ -46,17 +53,18 @@ struct Exercise2: View {
                                 .scaledToFit()
                                 .frame(width: 50)
                             
-                            Text("0")
+                            Text("£\((Double(kw) ?? 0) / 2.70)")
                         }
                         HStack(spacing: 40){
                             Image("eu")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50)
-                            Text("0")
+                            Text("€\((Double(kw) ?? 0) / 2.46)")
                         }
                     }.padding(.top, 50)
                     Spacer()
+                    
                 }
             }.padding()
         }
